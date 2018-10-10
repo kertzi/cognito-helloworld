@@ -5,6 +5,9 @@
     "ordered-imports": false,
     "jsx-no-lambda": false
   },
+  "jsRules": {
+    "no-empty": true
+  },
   "linterOptions": {
     "exclude": [
       "config/**/*.js",

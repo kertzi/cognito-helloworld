@@ -45,6 +45,7 @@ class Authorizer {
         var token = event.authorizationToken;
 
         var claims = await jwtVerifier(token);
+        console.log('claims', claims);
         var principalId = claims.username;
         var groups: Array<string> = claims['cognito:groups'] ? claims['cognito:groups'] : null;
         console.log('Username', principalId);

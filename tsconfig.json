@@ -9,7 +9,7 @@
     "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDir": "src",
+
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -18,9 +18,14 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": false
   },
+  "files": [
+    "./node_modules/@types/node/index.d.ts",
+    "./node_modules/@types/mocha/index.d.ts"
+  ],
   "include": [
-    "src/**/*.ts",
-    "src/**/*.js"
+    "*.d.ts",
+    "src/**/*", "../tschievo/packages/tschievo-api/src/auth/JwtVerifier.ts", "../tschievo/packages/tschievo-api/src/auth/Authorizer.ts", "../tschievo/packages/tschievo-api/src/auth/AuthPolicy.ts", "../tschievo/packages/tschievo-api/src/auth/AuthPolicy.js", "../tschievo/packages/tschievo-api/src/auth/authpolicy/AuthPolicy.js"
+    
   ],
   "exclude": [
     "node_modules",
