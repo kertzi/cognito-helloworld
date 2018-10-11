@@ -409,18 +409,18 @@ class AuthPolicy {
       (!this.denyMethods || this.denyMethods.length === 0)) {
       throw new Error("No statements defined for the policy");
     }
+    var allowStatements: Statement[] = this.getStatementsForEffect("Allow", this.allowMethods);
+    var denyStatements: Statement[] = this.getStatementsForEffect("Deny", this.denyMethods);
+    var statements: Statement[] = [...allowStatements, ...denyStatements];
 
-    var policy: Policy;
-    policy.principalId = this.principalId;
-    
-    var doc: PolicyDocument;
-    doc.Version = this.version;
-    doc.Statement = [];
-
-    doc.Statement = doc.Statement.concat(this.getStatementsForEffect("Allow", this.allowMethods));
-    doc.Statement = doc.Statement.concat(this.getStatementsForEffect("Deny", this.denyMethods));
-
-    policy.policyDocument = doc;
+    var doc: PolicyDocument = {
+      Version: this.version,
+      Statement: statements,
+    };
+    var policy: Policy = {
+      principalId: this.principalId,
+      policyDocument: doc,
+    }
 
     return policy;
   }

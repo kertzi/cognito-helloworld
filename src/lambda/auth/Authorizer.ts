@@ -1,5 +1,5 @@
 import AuthPolicy, { Policy } from './AuthPolicy';
-import JwtVerifier, { Options } from './JwtVerifier';
+import { userPoolJwtVerifier, Options } from './JwtVerifier';
 
 export enum Effect {
     Allow,
@@ -50,11 +50,12 @@ class Authorizer {
             userpoolId: 'eu-west-1_stPjdpnxN'
         };
 
-        var claims = await JwtVerifier(token, verifierOptions);
+        var claims = await userPoolJwtVerifier(token, verifierOptions);
         console.log('claims', claims);
         var principalId = claims.username;
         console.log('Username', principalId);
-
+        
+        // TODO: Actual authorizen check to decide Allow/Deny
         return this.createPolicy(event, principalId, Effect.Allow);
         
         //return this.createPolicy(event, principalId, Effect.Deny);
